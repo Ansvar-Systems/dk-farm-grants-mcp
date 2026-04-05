@@ -1,0 +1,58 @@
+{
+  "name": "@ansvar-systems/dk-farm-grants-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Danish farm grants \u2014 milj\u00f8teknologi, \u00f8kologisk arealtilskud, miniv\u00e5domr\u00e5der",
+  "type": "module",
+  "main": "dist/server.js",
+  "bin": {
+    "dk-farm-grants-mcp": "dist/server.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/server.ts",
+    "start": "node dist/server.js",
+    "start:http": "node dist/http-server.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src/ tests/",
+    "typecheck": "tsc --noEmit",
+    "ingest": "tsx scripts/ingest.ts",
+    "build:db": "tsx scripts/build-db.ts",
+    "freshness:check": "tsx scripts/check-freshness.ts",
+    "coverage:update": "tsx scripts/update-coverage.ts"
+  },
+  "keywords": [
+    "mcp",
+    "grants",
+    "fetf",
+    "farming",
+    "capital-grants",
+    "woodland",
+    "defra"
+  ],
+  "author": "Ansvar Systems <info@ansvar.eu>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ansvar-Systems/dk-farm-grants-mcp.git"
+  },
+  "homepage": "https://ansvar.eu/open-agriculture",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "better-sqlite3": "^11.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}
