@@ -1,25 +1,25 @@
 # Disclaimer
 
-This MCP server provides UK farm grant information for informational purposes only.
+This MCP server provides Danish farm grant information for informational purposes only.
 
 ## Not Professional Advice
 
-The data served by this tool does not constitute professional financial, legal, or agricultural advice. Grant details, payment rates, deadlines, and eligibility criteria are based on published DEFRA, RPA, Forestry Commission, and Natural England sources, but individual circumstances vary. Always verify current terms on GOV.UK before applying for any grant. This is not a grant application service.
+The data served by this tool does not constitute professional financial, legal, or agricultural advice. Grant details, payment rates, deadlines, and eligibility criteria are based on published information from Landbrugsstyrelsen and the Danish CAP Strategic Plan 2023-2027, but individual circumstances vary. Always verify current terms on lbst.dk before applying for any grant. This is not a grant application service.
 
 ## Data Sources
 
 All data is sourced from:
 
-- **DEFRA** -- Department for Environment, Food and Rural Affairs
-- **RPA** -- Rural Payments Agency
-- **Forestry Commission** -- England Woodland Creation Offer
-- **Natural England** -- Countryside Stewardship
+- **Landbrugsstyrelsen** -- Danish Agricultural Agency (Tilskudsguiden)
+- **Landdistriktsprogrammet** -- Rural Development Programme
+- **CAP Strategic Plan 2023-2027** -- Denmark's implementation of the EU Common Agricultural Policy
+- **Energistyrelsen** -- Danish Energy Agency (biogas schemes)
 
-All data is used under the [Open Government Licence v3](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+Data is used under Danish public sector open data principles.
 
 ## Currency
 
-Grant schemes change. FETF rounds open and close, payment rates are updated, and eligibility criteria evolve. This tool shows the data available at the time of its last ingestion run. Check `check_data_freshness` for the age of the data. Always confirm deadlines and rates on GOV.UK before making decisions.
+Grant schemes change. Application rounds open and close, payment rates are updated, and eligibility criteria evolve. This tool shows the data available at the time of its last ingestion run. Check `check_data_freshness` for the age of the data. Always confirm deadlines and rates on lbst.dk before making decisions.
 
 ## No Warranty
 

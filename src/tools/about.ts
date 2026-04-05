@@ -3,18 +3,17 @@ import { SUPPORTED_JURISDICTIONS } from '../jurisdiction.js';
 
 export function handleAbout() {
   return {
-    name: 'Denmark Farm Grants MCP',
+    name: 'Danish Farm Grants MCP',
     description:
-      'UK farm grants and capital funding made queryable by AI. Covers FETF 2026, Capital Grants, ' +
-      'EWCO, Countryside Stewardship, deadlines, eligible items, and stacking rules. Data sourced ' +
-      'from DEFRA, RPA, Forestry Commission, and Natural England.',
+      'Danish farm grants and subsidies made queryable by AI. Covers Miljøteknologi, Økologisk Arealtilskud, ' +
+      'Pleje af naturarealer, skovrejsning, minivådområder, modernisering, dyrevelfærd, and more. ' +
+      'Data sourced from Landbrugsstyrelsen, Landdistriktsprogrammet, and CAP SP 2023-2027.',
     version: '0.1.0',
     jurisdiction: [...SUPPORTED_JURISDICTIONS],
     data_sources: [
-      'DEFRA Farming and Countryside Programme',
-      'RPA FETF Grant Guidance',
-      'Forestry Commission EWCO',
-      'Natural England Countryside Stewardship',
+      'Landbrugsstyrelsen Tilskudsguiden (lbst.dk)',
+      'Landdistriktsprogrammet',
+      'CAP Strategic Plan 2023-2027 (Denmark)',
     ],
     tools_count: 10,
     links: {

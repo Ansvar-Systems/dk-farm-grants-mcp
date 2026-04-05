@@ -4,13 +4,13 @@
 [![GHCR](https://github.com/Ansvar-Systems/dk-farm-grants-mcp/actions/workflows/ghcr-build.yml/badge.svg)](https://github.com/Ansvar-Systems/dk-farm-grants-mcp/actions/workflows/ghcr-build.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-UK farm grants and capital funding via the [Model Context Protocol](https://modelcontextprotocol.io). Query FETF 2026, Capital Grants, EWCO, Countryside Stewardship -- deadlines, eligible items, stacking rules, and application guidance -- all from your AI assistant.
+Danish farm grants and subsidies via the [Model Context Protocol](https://modelcontextprotocol.io). Query Miljoeknologi, Oekologisk Arealtilskud, minivaadomraader, skovrejsning -- eligible items, stacking rules, and application guidance -- all from your AI assistant.
 
 Part of [Ansvar Open Agriculture](https://ansvar.eu/open-agriculture).
 
 ## Why This Exists
 
-UK farmers leave millions in grant funding unclaimed every year because the information is scattered across dozens of GOV.UK pages, PDFs, and portals. This MCP server puts it all in one place, queryable by AI. Ask about deadlines, check what equipment qualifies, find out which grants can be combined, and estimate your funding before you apply.
+Danish farmers miss available grant funding because the information is spread across Landbrugsstyrelsen publications, the Tast Selv portal, and various programme documents. This MCP server consolidates it into a single AI-queryable source. Ask about schemes, check eligibility, find out which grants can be combined, and get step-by-step application guidance.
 
 ## Quick Start
 
@@ -21,7 +21,7 @@ Add to `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "uk-farm-grants": {
+    "dk-farm-grants": {
       "command": "npx",
       "args": ["-y", "@ansvar/dk-farm-grants-mcp"]
     }
@@ -32,7 +32,7 @@ Add to `claude_desktop_config.json`:
 ### Claude Code
 
 ```bash
-claude mcp add uk-farm-grants npx @ansvar/dk-farm-grants-mcp
+claude mcp add dk-farm-grants npx @ansvar/dk-farm-grants-mcp
 ```
 
 ### Streamable HTTP (remote)
@@ -57,23 +57,23 @@ npx @ansvar/dk-farm-grants-mcp
 
 Ask your AI assistant:
 
-- "What FETF grants are open right now?"
-- "Show me eligible items for FETF 2026 productivity"
-- "Can I combine FETF with Countryside Stewardship?"
-- "What's the deadline for FETF 2026?"
-- "Estimate the grant value if I buy a direct drill and GPS guidance"
-- "How do I apply for EWCO woodland creation?"
-- "What grants are available for slurry management?"
+- "Hvilke tilskudsordninger er der til miljoteknologi?"
+- "Hvad er satserne for okologisk arealtilskud?"
+- "Kan jeg kombinere miljoeteknologi med moderniseringsstoette?"
+- "Hvordan ansoeger jeg om minivaadomraader?"
+- "Hvilke energiinvesteringer kan jeg faa tilskud til?"
+- "Hvad er kravene til skovrejsning?"
+- "Vis mig tilskud til dyrevelfaerd"
 
 ## Stats
 
 | Metric | Value |
 |--------|-------|
 | Tools | 10 (3 meta + 7 domain) |
-| Jurisdiction | GB |
-| Grants covered | FETF 2026 (3 themes), Capital Grants, EWCO, CS Higher Tier, Tree Health Pilot |
-| Data sources | DEFRA, RPA, Forestry Commission, Natural England |
-| License (data) | Open Government Licence v3 |
+| Jurisdiction | DK |
+| Grants covered | 12 schemes (investment, area payments, projects) |
+| Data sources | Landbrugsstyrelsen, Landdistriktsprogrammet, CAP SP 2023-2027 |
+| License (data) | Danish public sector open data |
 | License (code) | Apache-2.0 |
 | Transport | stdio + Streamable HTTP |
 
@@ -107,7 +107,7 @@ See [SECURITY.md](SECURITY.md) for reporting policy.
 
 ## Disclaimer
 
-This tool provides reference data for informational purposes only. It is not professional financial or agricultural advice. Grant details change -- always verify on GOV.UK before applying. See [DISCLAIMER.md](DISCLAIMER.md).
+This tool provides reference data for informational purposes only. It is not professional financial or agricultural advice. Grant details change -- always verify on lbst.dk before applying. See [DISCLAIMER.md](DISCLAIMER.md).
 
 ## Contributing
 
@@ -115,4 +115,4 @@ Issues and pull requests welcome. For security vulnerabilities, email security@a
 
 ## License
 
-Apache-2.0. Data sourced under Open Government Licence v3.
+Apache-2.0. Data sourced under Danish public sector open data principles.

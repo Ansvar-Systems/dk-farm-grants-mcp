@@ -91,7 +91,7 @@ export function handleCheckStacking(db: Database, args: StackingArgs) {
     pairs_checked: pairs.length,
     all_compatible: allCompatible,
     results: pairs,
-    note: 'Stacking rules are based on published DEFRA guidance and may change between grant rounds. Verify with RPA before applying.',
+    note: 'Kombinationsregler er baseret på offentliggjort vejledning fra Landbrugsstyrelsen og kan ændre sig. Tjek altid lbst.dk.',
     _meta: buildMeta(),
   };
 }

@@ -1,6 +1,15 @@
 {
-  "mcp_name": "Denmark Farm Grants MCP",
+  "mcp_name": "Danish Farm Grants MCP",
   "jurisdiction": "DK",
   "build_date": "2026-04-05",
-  "status": "template — data not yet populated"
+  "status": "populated",
+  "grants": 12,
+  "grant_items": 24,
+  "stacking_rules": 10,
+  "guidance_steps": 27,
+  "data_sources": [
+    "Landbrugsstyrelsen Tilskudsguiden (lbst.dk)",
+    "Landdistriktsprogrammet",
+    "CAP SP 2023-2027"
+  ]
 }

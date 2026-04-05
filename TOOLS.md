@@ -36,17 +36,17 @@ Check when data was last ingested, staleness status, and how to trigger a refres
 
 ### `search_grants`
 
-Search UK farm grants by keyword. Covers FETF, Capital Grants, EWCO, Countryside Stewardship, and more.
+Search Danish farm grants by keyword. Covers Miljoeknologi, Oekologisk Arealtilskud, minivaadomraader, skovrejsning, and more.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `query` | string | Yes | Free-text search query (e.g. "slurry equipment", "woodland creation") |
-| `grant_type` | string | No | Filter by grant type (e.g. capital, revenue) |
-| `min_value` | number | No | Minimum grant value in GBP |
-| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: GB) |
+| `query` | string | Yes | Free-text search query (e.g. "gylleforsuring", "oekologisk", "skovrejsning") |
+| `grant_type` | string | No | Filter by grant type (e.g. investment, area_payment, project) |
+| `min_value` | number | No | Minimum grant value in DKK |
+| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: DK) |
 | `limit` | number | No | Max results (default: 20, max: 50) |
 
-**Example:** `{ "query": "precision farming equipment" }`
+**Example:** `{ "query": "miljoeteknologi staldteknologi" }`
 
 ---
 
@@ -56,12 +56,12 @@ Get full details for a specific grant scheme: budget, eligibility, deadlines, ma
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `grant_id` | string | Yes | Grant ID (e.g. fetf-2026-productivity, ewco, cs-higher-tier) |
-| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: GB) |
+| `grant_id` | string | Yes | Grant ID (e.g. miljoeteknologi, oeko-arealtilskud, skovrejsning) |
+| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: DK) |
 
 **Returns:** Grant name, type, authority, budget, status, dates, description, eligibility, match funding requirement, eligible items count.
 
-**Example:** `{ "grant_id": "fetf-2026-productivity" }`
+**Example:** `{ "grant_id": "miljoeteknologi" }`
 
 ---
 
@@ -71,8 +71,8 @@ List open and upcoming grant deadlines, sorted by urgency. Shows days remaining 
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `grant_type` | string | No | Filter by grant type (e.g. capital, revenue) |
-| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: GB) |
+| `grant_type` | string | No | Filter by grant type (e.g. investment, area_payment, project) |
+| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: DK) |
 
 **Returns:** Array of grants with `status`, `open_date`, `close_date`, `days_remaining`, `urgency` (closing soon / approaching / open / rolling).
 
@@ -84,13 +84,13 @@ List eligible items for a grant with codes, values, and specifications. Filter b
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `grant_id` | string | Yes | Grant ID (e.g. fetf-2026-productivity) |
-| `category` | string | No | Filter by item category (e.g. precision, slurry, handling) |
-| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: GB) |
+| `grant_id` | string | Yes | Grant ID (e.g. miljoeteknologi, oeko-arealtilskud) |
+| `category` | string | No | Filter by item category (e.g. staldteknologi, omlaegning, etablering) |
+| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: DK) |
 
 **Returns:** Items grouped by category, each with `item_code`, `name`, `description`, `specification`, `grant_value`, `grant_unit`, `score`.
 
-**Example:** `{ "grant_id": "fetf-2026-productivity", "category": "precision" }`
+**Example:** `{ "grant_id": "miljoeteknologi", "category": "staldteknologi" }`
 
 ---
 
@@ -101,11 +101,11 @@ Check whether multiple grants can be combined (stacked). Checks all pair combina
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `grant_ids` | string[] | Yes | Array of grant IDs to check compatibility (minimum 2) |
-| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: GB) |
+| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: DK) |
 
 **Returns:** `all_compatible` flag, array of pair results with `compatible`, `conditions`.
 
-**Example:** `{ "grant_ids": ["fetf-2026-productivity", "cs-higher-tier", "ewco"] }`
+**Example:** `{ "grant_ids": ["miljoeteknologi", "energi-landbrug", "modernisering"] }`
 
 ---
 
@@ -115,12 +115,12 @@ Get step-by-step application guidance for a grant, including evidence requiremen
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `grant_id` | string | Yes | Grant ID (e.g. fetf-2026-productivity) |
-| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: GB) |
+| `grant_id` | string | Yes | Grant ID (e.g. miljoeteknologi, oeko-arealtilskud) |
+| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: DK) |
 
 **Returns:** Ordered steps with `description`, `evidence_required`, `portal` URL.
 
-**Example:** `{ "grant_id": "ewco" }`
+**Example:** `{ "grant_id": "skovrejsning" }`
 
 ---
 
@@ -130,11 +130,11 @@ Calculate total grant value from selected items. Applies grant cap and calculate
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `grant_id` | string | Yes | Grant ID (e.g. fetf-2026-productivity) |
+| `grant_id` | string | Yes | Grant ID (e.g. miljoeteknologi, oeko-arealtilskud) |
 | `items` | string[] | No | Array of item codes to include. If omitted, includes all items |
-| `area_ha` | number | No | Area in hectares (for per-hectare payment items like EWCO) |
-| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: GB) |
+| `area_ha` | number | No | Area in hectares (for per-hectare payment items like arealtilskud) |
+| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: DK) |
 
 **Returns:** Item breakdown, subtotal, grant cap, capped value, match-funding percentage and amount, total project cost.
 
-**Example:** `{ "grant_id": "fetf-2026-productivity", "items": ["FETF-PR-001", "FETF-PR-003"] }`
+**Example:** `{ "grant_id": "oeko-arealtilskud", "items": ["OA-01", "OA-03"] }`

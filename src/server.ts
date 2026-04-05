@@ -40,14 +40,14 @@ const TOOLS = [
   },
   {
     name: 'search_grants',
-    description: 'Search UK farm grants by keyword. Covers FETF, Capital Grants, EWCO, Countryside Stewardship, and more.',
+    description: 'Search Danish farm grants by keyword. Covers Miljoeknologi, Oekologisk Arealtilskud, minivaadomraader, skovrejsning, and more.',
     inputSchema: {
       type: 'object' as const,
       properties: {
-        query: { type: 'string', description: 'Free-text search query (e.g. "slurry equipment", "woodland creation")' },
-        grant_type: { type: 'string', description: 'Filter by grant type (e.g. capital, revenue)' },
-        min_value: { type: 'number', description: 'Minimum grant value in GBP' },
-        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: GB)' },
+        query: { type: 'string', description: 'Free-text search query (e.g. "gylleforsuring", "oekologisk", "skovrejsning")' },
+        grant_type: { type: 'string', description: 'Filter by grant type (e.g. investment, area_payment, project)' },
+        min_value: { type: 'number', description: 'Minimum grant value in DKK' },
+        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: DK)' },
         limit: { type: 'number', description: 'Max results (default: 20, max: 50)' },
       },
       required: ['query'],
@@ -59,8 +59,8 @@ const TOOLS = [
     inputSchema: {
       type: 'object' as const,
       properties: {
-        grant_id: { type: 'string', description: 'Grant ID (e.g. fetf-2026-productivity, ewco, cs-higher-tier)' },
-        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: GB)' },
+        grant_id: { type: 'string', description: 'Grant ID (e.g. miljoeteknologi, oeko-arealtilskud, skovrejsning)' },
+        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: DK)' },
       },
       required: ['grant_id'],
     },
@@ -71,8 +71,8 @@ const TOOLS = [
     inputSchema: {
       type: 'object' as const,
       properties: {
-        grant_type: { type: 'string', description: 'Filter by grant type (e.g. capital, revenue)' },
-        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: GB)' },
+        grant_type: { type: 'string', description: 'Filter by grant type (e.g. investment, area_payment, project)' },
+        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: DK)' },
       },
     },
   },
@@ -82,9 +82,9 @@ const TOOLS = [
     inputSchema: {
       type: 'object' as const,
       properties: {
-        grant_id: { type: 'string', description: 'Grant ID (e.g. fetf-2026-productivity)' },
-        category: { type: 'string', description: 'Filter by item category (e.g. precision, slurry, handling)' },
-        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: GB)' },
+        grant_id: { type: 'string', description: 'Grant ID (e.g. miljoeteknologi, oeko-arealtilskud)' },
+        category: { type: 'string', description: 'Filter by item category (e.g. staldteknologi, omlægning, etablering)' },
+        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: DK)' },
       },
       required: ['grant_id'],
     },
@@ -100,7 +100,7 @@ const TOOLS = [
           items: { type: 'string' },
           description: 'Array of grant IDs to check compatibility (minimum 2)',
         },
-        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: GB)' },
+        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: DK)' },
       },
       required: ['grant_ids'],
     },
@@ -111,8 +111,8 @@ const TOOLS = [
     inputSchema: {
       type: 'object' as const,
       properties: {
-        grant_id: { type: 'string', description: 'Grant ID (e.g. fetf-2026-productivity)' },
-        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: GB)' },
+        grant_id: { type: 'string', description: 'Grant ID (e.g. miljoeteknologi, oeko-arealtilskud)' },
+        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: DK)' },
       },
       required: ['grant_id'],
     },
@@ -123,14 +123,14 @@ const TOOLS = [
     inputSchema: {
       type: 'object' as const,
       properties: {
-        grant_id: { type: 'string', description: 'Grant ID (e.g. fetf-2026-productivity)' },
+        grant_id: { type: 'string', description: 'Grant ID (e.g. miljoeteknologi, oeko-arealtilskud)' },
         items: {
           type: 'array',
           items: { type: 'string' },
           description: 'Array of item codes to include. If omitted, includes all items.',
         },
-        area_ha: { type: 'number', description: 'Area in hectares (for per-hectare payment items like EWCO)' },
-        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: GB)' },
+        area_ha: { type: 'number', description: 'Area in hectares (for per-hectare payment items like arealtilskud)' },
+        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: DK)' },
       },
       required: ['grant_id'],
     },

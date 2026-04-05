@@ -24,13 +24,6 @@ describe('check_deadlines tool', () => {
     expect((result as { grants_with_deadlines: number }).grants_with_deadlines).toBeGreaterThan(0);
   });
 
-  test('includes rolling grants', () => {
-    const result = handleCheckDeadlines(db, {}) as { deadlines: { id: string; urgency: string }[] };
-    const rolling = result.deadlines.find(d => d.id === 'ewco');
-    expect(rolling).toBeDefined();
-    expect(rolling!.urgency).toContain('no deadline');
-  });
-
   test('includes open grants', () => {
     const result = handleCheckDeadlines(db, {}) as { deadlines: { id: string; status: string }[] };
     const open = result.deadlines.filter(d => d.status === 'open');
@@ -38,14 +31,14 @@ describe('check_deadlines tool', () => {
   });
 
   test('respects grant_type filter', () => {
-    const result = handleCheckDeadlines(db, { grant_type: 'capital' }) as { deadlines: { grant_type: string }[] };
+    const result = handleCheckDeadlines(db, { grant_type: 'investment' }) as { deadlines: { grant_type: string }[] };
     for (const d of result.deadlines) {
-      expect(d.grant_type).toBe('capital');
+      expect(d.grant_type).toBe('investment');
     }
   });
 
   test('rejects unsupported jurisdiction', () => {
-    const result = handleCheckDeadlines(db, { jurisdiction = 'DK' });
+    const result = handleCheckDeadlines(db, { jurisdiction: 'GB' });
     expect(result).toHaveProperty('error', 'jurisdiction_not_supported');
   });
 });

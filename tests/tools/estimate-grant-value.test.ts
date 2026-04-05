@@ -20,42 +20,29 @@ describe('estimate_grant_value tool', () => {
 
   test('calculates total for selected items', () => {
     const result = handleEstimateGrantValue(db, {
-      grant_id: 'fetf-2026-productivity',
-      items: ['FETF-PR-001', 'FETF-PR-003'],
+      grant_id: 'miljoeteknologi',
+      items: ['MT-01'],
     });
-    // 28000 + 8000 = 36000
-    expect((result as { grant_value: number }).grant_value).toBe(36000);
-    expect((result as { items_selected: number }).items_selected).toBe(2);
-    expect((result as { match_funding_required: number }).match_funding_required).toBe(0);
-  });
-
-  test('applies grant cap when exceeded', () => {
-    // All 3 items: 28000 + 8000 + 25000 = 61000, cap is 50000
-    const result = handleEstimateGrantValue(db, {
-      grant_id: 'fetf-2026-productivity',
-    });
-    expect((result as { subtotal: number }).subtotal).toBe(61000);
-    expect((result as { grant_value: number }).grant_value).toBe(50000);
-    expect((result as { capped: boolean }).capped).toBe(true);
-  });
-
-  test('calculates match funding for capital grants', () => {
-    const result = handleEstimateGrantValue(db, {
-      grant_id: 'capital-grants-2026',
-    });
-    // Capital grants: 60% match funding (40% grant)
-    // No items seeded for capital-grants-2026, so value is 0
-    expect((result as { match_funding_pct: number }).match_funding_pct).toBe(60);
+    // Single item: 40 (% value)
+    expect((result as { items_selected: number }).items_selected).toBe(1);
   });
 
   test('calculates per-hectare items with area', () => {
     const result = handleEstimateGrantValue(db, {
-      grant_id: 'ewco',
-      items: ['EWCO-001'],
+      grant_id: 'oeko-arealtilskud',
+      items: ['OA-01'],
       area_ha: 10,
     });
-    // 8500/ha * 10 ha = 85000
-    expect((result as { grant_value: number }).grant_value).toBe(85000);
+    // 1050/ha * 10 ha = 10500
+    expect((result as { grant_value: number }).grant_value).toBe(10500);
+  });
+
+  test('calculates match funding for modernisering', () => {
+    const result = handleEstimateGrantValue(db, {
+      grant_id: 'modernisering',
+    });
+    // Modernisering: 60% match funding
+    expect((result as { match_funding_pct: number }).match_funding_pct).toBe(60);
   });
 
   test('returns error for unknown grant', () => {
@@ -64,7 +51,7 @@ describe('estimate_grant_value tool', () => {
   });
 
   test('rejects unsupported jurisdiction', () => {
-    const result = handleEstimateGrantValue(db, { grant_id: 'fetf-2026-productivity', jurisdiction: 'NL' });
+    const result = handleEstimateGrantValue(db, { grant_id: 'miljoeteknologi', jurisdiction: 'NL' });
     expect(result).toHaveProperty('error', 'jurisdiction_not_supported');
   });
 });

@@ -18,29 +18,29 @@ describe('search_grants tool', () => {
     if (existsSync(TEST_DB)) unlinkSync(TEST_DB);
   });
 
-  test('returns results for precision query', () => {
-    const result = handleSearchGrants(db, { query: 'precision' });
+  test('returns results for staldteknologi query', () => {
+    const result = handleSearchGrants(db, { query: 'staldteknologi' });
     expect(result).toHaveProperty('results_count');
     expect((result as { results_count: number }).results_count).toBeGreaterThan(0);
   });
 
-  test('returns results for drill query', () => {
-    const result = handleSearchGrants(db, { query: 'drill' });
+  test('returns results for gylleforsuring query', () => {
+    const result = handleSearchGrants(db, { query: 'gylleforsuring' });
     expect(result).toHaveProperty('results_count');
     expect((result as { results_count: number }).results_count).toBeGreaterThan(0);
   });
 
   test('respects grant_type filter', () => {
-    const result = handleSearchGrants(db, { query: 'capital grants equipment', grant_type: 'capital' });
+    const result = handleSearchGrants(db, { query: 'investering tilskud', grant_type: 'investment' });
     if ('results' in result) {
       for (const r of (result as { results: { grant_type: string }[] }).results) {
-        expect(r.grant_type).toBe('capital');
+        expect(r.grant_type).toBe('investment');
       }
     }
   });
 
   test('rejects unsupported jurisdiction', () => {
-    const result = handleSearchGrants(db, { query: 'drill', jurisdiction: 'FR' });
+    const result = handleSearchGrants(db, { query: 'gylleforsuring', jurisdiction: 'FR' });
     expect(result).toHaveProperty('error', 'jurisdiction_not_supported');
   });
 });
