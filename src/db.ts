@@ -55,7 +55,7 @@ function initSchema(db: BetterSqlite3.Database): void {
       eligible_applicants TEXT,
       match_funding_pct INTEGER,
       max_grant_value REAL,
-      jurisdiction = 'DK'
+      jurisdiction TEXT DEFAULT 'DK'
     );
 
     CREATE TABLE IF NOT EXISTS grant_items (
@@ -69,7 +69,7 @@ function initSchema(db: BetterSqlite3.Database): void {
       grant_unit TEXT,
       category TEXT,
       score INTEGER,
-      jurisdiction = 'DK'
+      jurisdiction TEXT DEFAULT 'DK'
     );
 
     CREATE TABLE IF NOT EXISTS stacking_rules (
@@ -78,7 +78,7 @@ function initSchema(db: BetterSqlite3.Database): void {
       grant_b TEXT REFERENCES grants(id),
       compatible INTEGER NOT NULL,
       conditions TEXT,
-      jurisdiction = 'DK'
+      jurisdiction TEXT DEFAULT 'DK'
     );
 
     CREATE TABLE IF NOT EXISTS application_guidance (
@@ -88,7 +88,7 @@ function initSchema(db: BetterSqlite3.Database): void {
       description TEXT NOT NULL,
       evidence_required TEXT,
       portal TEXT,
-      jurisdiction = 'DK'
+      jurisdiction TEXT DEFAULT 'DK'
     );
 
     CREATE VIRTUAL TABLE IF NOT EXISTS search_index USING fts5(
@@ -102,7 +102,7 @@ function initSchema(db: BetterSqlite3.Database): void {
 
     INSERT OR IGNORE INTO db_metadata (key, value) VALUES ('schema_version', '1.0');
     INSERT OR IGNORE INTO db_metadata (key, value) VALUES ('mcp_name', 'Denmark Farm Grants MCP');
-    INSERT OR IGNORE INTO db_metadata (key, value) VALUES ('jurisdiction = 'DK');
+    INSERT OR IGNORE INTO db_metadata (key, value) VALUES ('jurisdiction', 'DK');
   `);
 }
 
